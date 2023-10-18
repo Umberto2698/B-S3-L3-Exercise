@@ -1,5 +1,7 @@
 package entities;
 
+import enums.Stato;
+
 import javax.persistence.*;
 
 @Entity

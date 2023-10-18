@@ -18,7 +18,7 @@ public class PartecipazioneDAO {
         em.persist(partecipazione);
 
         transaction.commit();
-        System.err.println("Evento salvato:");
+        System.err.println("Partecipazione salvata:");
         System.out.println(partecipazione);
     }
 
@@ -34,8 +34,8 @@ public class PartecipazioneDAO {
             transaction.begin();
             em.remove(found);
             transaction.commit();
-            System.out.println("L'evento è stato cancellato correttamente");
+            System.out.println("La partecipazione è stata cancellata correttamente");
         } else {
-            System.err.println("L'evento con l'id " + id + " non è stato trovato");
+            System.err.println("La partecipazione con l'id " + id + " non è stato trovato");
         }}
 }

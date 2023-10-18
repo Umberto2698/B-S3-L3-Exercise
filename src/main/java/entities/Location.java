@@ -11,7 +11,7 @@ public class Location {
     private long id;
     private String name;
     private String city;
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE)
     private List<Evento> events=new ArrayList<>();
 
     public Location(){}

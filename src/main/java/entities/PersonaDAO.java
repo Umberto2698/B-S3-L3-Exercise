@@ -18,7 +18,7 @@ public class PersonaDAO {
         em.persist(persona);
 
         transaction.commit();
-        System.err.println("Evento salvato:");
+        System.err.println("Persona salvato:");
         System.out.println(persona);
     }
 
@@ -34,8 +34,8 @@ public class PersonaDAO {
             transaction.begin();
             em.remove(found);
             transaction.commit();
-            System.out.println("L'evento è stato cancellato correttamente");
+            System.out.println("La persona è stata cancellata correttamente");
         } else {
-            System.err.println("L'evento con l'id " + id + " non è stato trovato");
+            System.err.println("La persona con l'id " + id + " non è stato trovato");
         }}
 }

@@ -18,7 +18,7 @@ public class Persona {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.REMOVE)
     private Set<Partecipazione> partecipazioni=new HashSet<>();
 
 
@@ -30,6 +30,18 @@ public class Persona {
         this.email = email;
         this.birthday = birthday;
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday=" + birthday +
+                ", sex=" + sex +
+                '}';
     }
 
     public long getId() {

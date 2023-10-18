@@ -25,6 +25,16 @@ public class Partecipazione {
         this.state = state;
     }
 
+    @Override
+    public String toString() {
+        return "Partecipazione{" +
+                "id=" + id +
+                ", person=" + person +
+                ", event=" + event +
+                ", state=" + state +
+                '}';
+    }
+
     public long getId() {
         return id;
     }

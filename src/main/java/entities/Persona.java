@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,7 @@ public class Persona {
     private String name;
     private String surname;
     private String email;
-    private Date birthday;
+    private LocalDate birthday;
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
@@ -23,13 +24,12 @@ public class Persona {
 
     public Persona(){}
 
-    public Persona(String name, String surname, String email, Date birthday, Sex sex, Set<Partecipazione> partecipazioni) {
+    public Persona(String name, String surname, String email, LocalDate birthday, Sex sex) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.birthday = birthday;
         this.sex = sex;
-        this.partecipazioni = partecipazioni;
     }
 
     public long getId() {
@@ -60,7 +60,7 @@ public class Persona {
         this.email = email;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 

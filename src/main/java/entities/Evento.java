@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,7 @@ public class Evento {
     private long id;
     private String titolo;
     @Column(name = "data_evento")
-    private Date dataEvento;
+    private LocalDate dataEvento;
     private String descrizione;
 
     @Enumerated(EnumType.STRING)
@@ -29,7 +30,7 @@ public class Evento {
     private Set<Partecipazione> partecipazioni=new HashSet<>();
 
     public Evento(){};
-    public Evento(String titolo, Date dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
@@ -59,7 +60,7 @@ public class Evento {
         return titolo;
     }
 
-    public Date getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
@@ -82,7 +83,7 @@ public class Evento {
         this.titolo = titolo;
     }
 
-    public void setDataEvento(Date dataEvento) {
+    public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
 

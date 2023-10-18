@@ -27,7 +27,7 @@ public class Evento {
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private Set<Partecipazione> partecipazioni=new HashSet<>();
 
     public Evento(){};

@@ -11,6 +11,8 @@ public class Location {
     private long id;
     private String name;
     private String city;
+    @OneToMany(mappedBy = "location")
+    private List<Evento> events=new ArrayList<>();
 
     public Location(){}
 
@@ -18,9 +20,6 @@ public class Location {
         this.name = name;
         this.city = city;
     }
-
-    @OneToMany(mappedBy = "location")
-    private List<Evento> events=new ArrayList<>();
 
 
     @Override

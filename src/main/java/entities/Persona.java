@@ -2,7 +2,8 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Persona {
@@ -15,12 +16,14 @@ public class Persona {
     private Date birthday;
     @Enumerated(EnumType.STRING)
     private Sex sex;
-    private List<Partecipazione> partecipazioni;
+
+    @OneToMany(mappedBy = "person")
+    private Set<Partecipazione> partecipazioni=new HashSet<>();
 
 
     public Persona(){}
 
-    public Persona(String name, String surname, String email, Date birthday, Sex sex, List<Partecipazione> partecipazioni) {
+    public Persona(String name, String surname, String email, Date birthday, Sex sex, Set<Partecipazione> partecipazioni) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -65,11 +68,11 @@ public class Persona {
         return sex;
     }
 
-    public List<Partecipazione> getPartecipazioni() {
+    public Set<Partecipazione> getPartecipazioni() {
         return partecipazioni;
     }
 
-    public void setPartecipazioni(List<Partecipazione> partecipazioni) {
+    public void setPartecipazioni(Set<Partecipazione> partecipazioni) {
         this.partecipazioni = partecipazioni;
     }
 }

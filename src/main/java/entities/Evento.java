@@ -2,6 +2,8 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Evento {
@@ -22,6 +24,9 @@ public class Evento {
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @OneToMany(mappedBy = "event")
+    private Set<Partecipazione> partecipazioni=new HashSet<>();
 
     public Evento(){};
     public Evento(String titolo, Date dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
@@ -91,5 +96,9 @@ public class Evento {
 
     public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+    }
+
+    public Set<Partecipazione> getPartecipazioni() {
+        return partecipazioni;
     }
 }

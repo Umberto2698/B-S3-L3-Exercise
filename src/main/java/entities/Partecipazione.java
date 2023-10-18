@@ -1,9 +1,6 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Partecipazione {
@@ -11,15 +8,20 @@ public class Partecipazione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private Persona persona;
-    private Evento evento;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Persona person;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Evento event;
+    @Enumerated(EnumType.STRING)
     private Stato state;
 
     public Partecipazione(){}
 
-    public Partecipazione(Persona persona, Evento evento, Stato state) {
-        this.persona = persona;
-        this.evento = evento;
+    public Partecipazione(Persona person, Evento event, Stato state) {
+        this.person = person;
+        this.event = event;
         this.state = state;
     }
 
@@ -28,19 +30,19 @@ public class Partecipazione {
     }
 
     public Persona getPersona() {
-        return persona;
+        return person;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setPersona(Persona person) {
+        this.person = person;
     }
 
     public Evento getEvento() {
-        return evento;
+        return event;
     }
 
-    public void setEvento(Evento evento) {
-        this.evento = evento;
+    public void setEvento(Evento event) {
+        this.event = event;
     }
 
     public Stato getState() {

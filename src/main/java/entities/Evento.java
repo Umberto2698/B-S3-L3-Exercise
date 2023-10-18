@@ -1,29 +1,36 @@
 package entities;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Evento {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "event_id")
     private long id;
     private String titolo;
-    private Date data_evento;
+    @Column(name = "data_evento")
+    private Date dataEvento;
     private String descrizione;
+
     @Enumerated(EnumType.STRING)
-    private TipoEvento tipo_evento;
-    private int numero_massimo_partecipanti;
+    @Column(name = "tipo_evento")
+    private TipoEvento tipoEvento;
+    @Column(name = "numero_massimo_partecipanti")
+    private int numeroMassimoPartecipanti;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     public Evento(){};
-    public Evento(String titolo, Date dataEvento, String descrizione, TipoEvento tipoevento, int numeroMassimoPartecipanti) {
+    public Evento(String titolo, Date dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
         this.titolo = titolo;
-        this.data_evento = dataEvento;
+        this.dataEvento = dataEvento;
         this.descrizione = descrizione;
-        this.tipo_evento = tipoevento;
-        this.numero_massimo_partecipanti = numeroMassimoPartecipanti;
+        this.tipoEvento = tipoEvento;
+        this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+        this.location=location;
     }
 
     @Override
@@ -31,10 +38,11 @@ public class Evento {
         return "Evento{" +
                 "id=" + id +
                 ", titolo='" + titolo + '\'' +
-                ", dataEvento=" + data_evento +
+                ", dataEvento=" + dataEvento +
                 ", descrizione='" + descrizione + '\'' +
-                ", tipoevento=" + tipo_evento +
-                ", numeroMassimoPartecipanti=" + numero_massimo_partecipanti +
+                ", tipoEvento=" + tipoEvento +
+                ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti + '\'' +
+                ", location=" + location +
                 '}';
     }
 
@@ -47,19 +55,22 @@ public class Evento {
     }
 
     public Date getDataEvento() {
-        return data_evento;
+        return dataEvento;
     }
 
+    public Location getLocation() {
+        return location;
+    }
     public String getDescrizione() {
         return descrizione;
     }
 
     public TipoEvento getTipoevento() {
-        return tipo_evento;
+        return tipoEvento;
     }
 
     public int getNumeroMassimoPartecipanti() {
-        return numero_massimo_partecipanti;
+        return numeroMassimoPartecipanti;
     }
 
     public void setTitolo(String titolo) {
@@ -67,18 +78,18 @@ public class Evento {
     }
 
     public void setDataEvento(Date dataEvento) {
-        this.data_evento = dataEvento;
+        this.dataEvento = dataEvento;
     }
 
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
 
-    public void setTipoevento(TipoEvento tipoevento) {
-        this.tipo_evento = tipoevento;
+    public void setTipoevento(TipoEvento tipoEvento) {
+        this.tipoEvento = tipoEvento;
     }
 
     public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
-        this.numero_massimo_partecipanti = numeroMassimoPartecipanti;
+        this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 }
